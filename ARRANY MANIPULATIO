@@ -1,0 +1,72 @@
+#include <stdio.h>
+
+int main()
+{
+    int arr[10] = {10, 20, 30, 40, 50};
+    int n = 5;
+    int choice, i, pos, element, index;
+
+    printf("1. Insert 15 at Index 4\n");
+    printf("2. Delete 30\n");
+    printf("3. Replace 50 with 15\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    switch(choice)
+    {
+        case 1:
+            element = 15;
+            index = 4;
+
+            for(i = n; i > index; i--)
+                arr[i] = arr[i - 1];
+
+            arr[index] = element;
+            n++;
+            break;
+
+        case 2:
+            element = 30;
+            pos = -1;
+
+            for(i = 0; i < n; i++)
+            {
+                if(arr[i] == element)
+                {
+                    pos = i;
+                    break;
+                }
+            }
+
+            if(pos != -1)
+            {
+                for(i = pos; i < n - 1; i++)
+                    arr[i] = arr[i + 1];
+
+                n--;
+            }
+            break;
+
+        case 3:
+            for(i = 0; i < n; i++)
+            {
+                if(arr[i] == 50)
+                {
+                    arr[i] = 15;
+                    break;
+                }
+            }
+            break;
+
+        default:
+            printf("Invalid Choice");
+            return 0;
+    }
+
+    printf("Array:\n");
+
+    for(i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+
+    return 0;
+}
